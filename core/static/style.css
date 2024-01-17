@@ -1,0 +1,88 @@
+body{
+    /* width: 1200px; */
+    /* border: 1px solid gray; */
+    margin: auto;
+    background: rgb(235, 234, 234);
+  }
+
+  .logo-img{
+    width: 90px;
+    height: 90px;
+  }
+  
+  li{
+      list-style: none;
+  }
+  
+  nav{
+      background: linear-gradient(66deg, #1CA8C7 -5.25%, #439FA5 46.76%, #4C7D8C 98.77%);
+  }
+  
+  .menu{
+      font-size: 20px;
+      color: black;
+  }
+  
+  .menu:hover{
+     color: white;
+     cursor: pointer;
+  }
+
+  .banner-container{
+    width: 1300px;
+    /* height: 400px; */
+    margin: auto;
+    padding: 30px;
+}
+
+.banner{
+    height: 450px;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to top right,rgb(208, 233, 238), rgb(124, 213, 248));
+    box-shadow: 4px 4px 4px gray;
+    
+}
+
+.bn-img{
+    width: 400px;
+    padding: 20px;
+}
+
+.category-container{
+    height: 70vh;
+    background-color: white;
+}
+
+
+.dashboard-container{
+    width: 100%;
+    height: 100vh;
+}
+
+.dash-menu{
+    height: 100vh;
+    background: wheat;
+}
+
+.contactUs-Container{
+    background-image: url("https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+}
+.contact-form{
+    width: 30%;
+    height: 470px;
+    margin-top: 80px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 7px gray;
+}
+
+.footer-container{
+    padding: 50px;
+    background: linear-gradient(66deg, #1CA8C7 -5.25%, #439FA5 46.76%, #4C7D8C 98.77%);
+}

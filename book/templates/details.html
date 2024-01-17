@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-12 d-flex p-3">
+  <!-- <div class="m-2"> -->
+     <div class="col-6 p-3">
+       <img src="{{bookmodel.image.url}}" alt="" style="width: 80%; height:430px">
+     </div>
+    <div class="col-6 p-4">
+      <h5 class="card-title"><b>Book Name :</b> {{bookmodel.book_name}}</h5>
+      <h6 class="card-title pt-1"><b>Quantity :</b> {{bookmodel.quantity}}</h6>
+      <p class="card-text">
+        <b>Description : </b>{{bookmodel.description}}
+      </p>
+      <p>
+        <b>Category :</b>
+        
+           <button class="btn btn-primary btn-sm m-2" disabled>{{bookmodel.category.name}}</button>
+      </p>
+      <a href="" class="btn btn-primary"></a>
+      
+    </div>
+  <!-- </div> -->
+</div>
+
+
+<div class="card m-2">
+  <h5 class="p-3">Total Comments : {{comments | length}}</h5>
+  {% for comment in comments %}
+    <div class="card-body border m-2">
+          <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
+          <p>{{comment.body}}</p>
+          <!-- <p>{{comment.id}}</p> -->
+          {% if request.user.email == comment.email %}
+            <a class="btn btn-warning" href="{% url 'edit_comment' comment.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'delete_comment' comment.id %}">Delete</a>
+          {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<div class="card m-2">
+  <div class="card-body">
+      <form method="post">
+          <h1>Add Comment</h1>
+          {% csrf_token %}
+          {{comment_form | crispy}}
+
+          <button class="btn btn-warning">Submit</button>
+      </form>
+  </div>
+</div>
+ 
+{% endblock %}

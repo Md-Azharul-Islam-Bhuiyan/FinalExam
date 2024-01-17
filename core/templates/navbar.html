@@ -1,0 +1,32 @@
+{% load static %}
+
+<nav class="d-flex justify-content-around align-items-center">
+    <div class="logo-container d-flex align-items-center gap-2">
+      <img class="logo-img" src="{% static 'images/logo1.png' %}" alt="logo" />
+      <h3>BoiLagbe</h3>
+    </div>
+    <div class="menu-container d-flex gap-3">
+      <li class="menu"><a class="menu text-decoration-none" href="{% url 'home' %}">Home</a></li>
+      <li class="menu">Services</li>
+      <li class="menu"><a class="menu text-decoration-none" href="{% url 'home' %}">Contact Us</a></li>
+      {% if request.user.is_authenticated %}
+        
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
+            <li><a class="dropdown-item" style="cursor: pointer;" href="{% url 'logout' %}">Logout</a></li>
+          </ul>
+        </div>
+      
+      {% else %}
+  
+        <li class="menu"><a href="{% url 'login'%}" class="text-decoration-none menu">Login</a></li>
+        <li class="menu"><a href="{% url 'register'%}" class="text-decoration-none menu">SignUp</a></li>
+      
+      {% endif %}
+      
+    </div>
+  </nav>

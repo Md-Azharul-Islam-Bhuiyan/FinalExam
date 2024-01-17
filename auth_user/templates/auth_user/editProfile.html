@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="login-container d-flex flex-wrap" style="height: 150vh;">
+    <div class="dash-menu col-md-2 text-center">
+        <p class="bg-secondary p-3"><a class="text-decoration-none text-black" href="{% url 'profile'%}">My Post</a></p>
+        <p class="bg-secondary p-3"><a class="text-decoration-none text-black" href="{% url 'add_category'%}">Add Category</a></p>
+        <p class="bg-secondary p-3"><a class="text-decoration-none text-black" href="{% url 'add_book'%}">Add Post</a></p>
+        <p class="bg-secondary p-3"><a class="text-decoration-none text-black" href="{% url 'edit_profile' request.user.id %}">Edit Profile</a></p>
+     </div>
+     <div class="col-md-10">
+        <form method="post"  class="bg-primary-subtle p-4 rounded" style="width:50%; height: 150vh; margin: auto;" enctype="multipart/form-data">
+            <h1 style="text-align: center;">Edit Profile</h1>
+            <br/>
+            {% csrf_token %}
+            <!-- {{form | crispy}} -->
+            {% for fm in form %}
+            {{fm.label_tag}}
+            {{fm}}
+            {{fm.errors | striptags}}
+            {% endfor %}
+            <br/>
+            <button class="btn btn-warning">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock  %}

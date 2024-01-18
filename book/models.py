@@ -33,7 +33,7 @@ class LikePost(models.Model):
     like_post = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.user.username} Liked {self.book.book_name}"
+        return f"{self.user.username} Liked {self.post.post_name}"
     
     class Meta:
         verbose_name_plural = "LikePosts"

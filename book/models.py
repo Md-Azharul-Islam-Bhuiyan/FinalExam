@@ -3,21 +3,21 @@ from category.models import CategoryModel
 from django.contrib.auth.models import User
 
 
-class BookModel(models.Model):
-    book_name = models.CharField(max_length=100)
+class PostModel(models.Model):
+    post_name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="book/media/images/")
     category = models.ManyToManyField(CategoryModel, null=True, blank=True)
     posted_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
-    price = models.IntegerField()
+    like = models.IntegerField(default=0) 
+    dislike = models.IntegerField(default=0)
     description = models.TextField()
     
     def __str__(self):
-        return self.book_name
+        return self.post_name
     
 
 class Comment(models.Model):
-    book = models.ForeignKey(BookModel, on_delete=models.CASCADE,related_name='comments',null=True, blank=True)
+    post = models.ForeignKey(PostModel, on_delete=models.CASCADE,related_name='comments',null=True, blank=True)
     name = models.CharField(max_length=30)
     email = models.EmailField()
     body = models.TextField()
@@ -27,12 +27,30 @@ class Comment(models.Model):
         return self.name
     
 
-class BookOverView(models.Model):
-    book = models.ForeignKey(BookModel, on_delete=models.CASCADE,related_name='bookoverviews', null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+class LikePost(models.Model):
+    post = models.ForeignKey(PostModel, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     like_post = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username} Liked {self.book.book_name}"
+    
+    class Meta:
+        verbose_name_plural = "LikePosts"
+    
+class DisLikePost(models.Model):
+    post = models.ForeignKey(PostModel, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     dislike_post = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} DisLiked {self.book.book_name}"
+    
+    class Meta:
+        verbose_name_plural = "DisLikePosts"
+
+
+
+
+
     

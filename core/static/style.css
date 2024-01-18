@@ -51,9 +51,14 @@ body{
     padding: 20px;
 }
 
+/* .products-container{
+    height: 600px;
+    width: 70% !important;
+} */
+
 .category-container{
     height: 70vh;
-    background-color: white;
+    background-color: rgb(207, 204, 204);
 }
 
 
@@ -66,6 +71,8 @@ body{
     height: 100vh;
     background: wheat;
 }
+
+
 
 .contactUs-Container{
     background-image: url("https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_1280.jpg");
@@ -82,7 +89,10 @@ body{
     box-shadow: 4px 4px 7px gray;
 }
 
+
+
 .footer-container{
     padding: 50px;
     background: linear-gradient(66deg, #1CA8C7 -5.25%, #439FA5 46.76%, #4C7D8C 98.77%);
 }
+

@@ -3,12 +3,12 @@
 <nav class="d-flex justify-content-around align-items-center">
     <div class="logo-container d-flex align-items-center gap-2">
       <img class="logo-img" src="{% static 'images/logo1.png' %}" alt="logo" />
-      <h3>BoiLagbe</h3>
+      <h3>BoiBook</h3>
     </div>
     <div class="menu-container d-flex gap-3">
       <li class="menu"><a class="menu text-decoration-none" href="{% url 'home' %}">Home</a></li>
       <li class="menu">Services</li>
-      <li class="menu"><a class="menu text-decoration-none" href="{% url 'home' %}">Contact Us</a></li>
+      <li class="menu"><a class="menu text-decoration-none" href="{% url 'contact_us' %}">Contact Us</a></li>
       {% if request.user.is_authenticated %}
         
         <div class="dropdown">
@@ -17,6 +17,7 @@
           </button>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'profile' %}">Dashboard</a></li>
+            <li><a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a></li>
             <li><a class="dropdown-item" style="cursor: pointer;" href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </div>

@@ -4,7 +4,7 @@
 {% block content %}
 {% load static %}
 
-<div class="dashboard-container col-md-12">
+<div class="container-fluid dashboard-container col-md-12">
     <div class="row">
         <div class="dash-menu col-md-2 text-center">
             <p class="bg-secondary p-3"><a class="text-decoration-none text-black" href="{% url 'profile'%}">My Post</a></p>
@@ -14,12 +14,14 @@
          </div>
          <div class="dash-body col-md-10">
            <div class="My-post">
+             <h3>My Posts: </h3>
              <table class="table table-bordered mt-2 w-75">
                <thead>
                  <tr>
-                   <th scope="col">Book Id</th>
-                   <th scope="col">Book Name</th>
-                   <th scope="col">Quantity</th>
+                   <th scope="col">#</th>
+                   <th scope="col">Post Name</th>
+                   <th scope="col">Like/DisLike</th>
+                   <!-- <th scope="col">Quantity</th> -->
                    <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -27,8 +29,20 @@
                    {% for p in data %}
                    <tr>
                      <th scope=>{{p.id}}</th>
-                     <td>{{p.book_name}}</td>
-                     <td>{{p.quantity}}</td>
+                     <td>{{p.post_name}}</td>
+                     <td class="d-flex flex-wrap gap-2">
+                        {% if p.like > 0 %}
+                            <p class="text-success">Liked</p>
+                         {% else %}
+                         <a class="btn btn-primary" href="{% url 'like' p.id %}">Like👍</a>
+                        {% endif %}
+                        {% if p.dislike > 0 %}
+                            <p class="text-success">DisLiked</p>
+                         {% else %}
+                         <a class="btn btn-dark" href="{% url 'dislike' p.id %}">Dislike👎</a>
+                        {% endif %}
+                     </td>
+                     <!-- <td>{{p.quantity}}</td> -->
                      <td>
                         <a href="{% url 'edit_book' p.id %}" class="btn btn-warning">Edit</a>
                         <a href="{% url 'delete_book' p.id %}" class="btn btn-danger">Delete</a>
@@ -40,6 +54,42 @@
                  </tbody>
                  </table>
            </div>
+           
+           
+           
+           <div class="My-comment">
+             <h3>Comments: </h3>
+             <table class="table table-bordered mt-2 w-75">
+               <thead>
+                 <tr>
+                   <th scope="col">#</th>
+                   <th scope="col">Post Name</th>
+                   <th scope="col">Comment</th>
+                   <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   {% for cm in comment %}
+                   <tr>
+                     <th scope=>{{cm.post.id}}</th>
+                     <td>{{cm.post.post_name}}</td>
+                     <td>{{cm.body}}</td>
+                     <td>
+                        
+                        <a href="{% url 'edit_comment' cm.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'delete_comment' cm.id %}" class="btn btn-danger">Delete</a>
+                        <!-- id dite hbe delete a -->
+                     </td>
+                    </tr>
+                    {% endfor %}
+                   
+                 </tbody>
+                 </table>
+           </div>
+           
+            <!-- <div class="Liked-post">
+               
+            </div> -->
          </div>
     </div>
  </div>

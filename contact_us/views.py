@@ -5,7 +5,7 @@ from .forms import ContactUsForm
 from django.contrib import messages
 class ContactUsView(CreateView):
     model = ContactUs
-    template_name = 'core/index.html'
+    template_name = 'contact_us/contact_us.html'
     form_class = ContactUsForm
     def get(self, request, *args, **kwargs):
         form = ContactUsForm()

@@ -1,9 +1,9 @@
 from django import forms
-from book.models import  BookModel, Comment, BookOverView
+from book.models import  PostModel, Comment
 
-class BooksForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
-        model = BookModel
+        model = PostModel
         exclude = ['posted_user']
     
 
@@ -25,8 +25,3 @@ class CommentForm(forms.ModelForm):
                  )
              })
 
-
-class BookOverViewForm(forms.ModelForm):
-    class Meta:
-        model = BookOverView
-        fields = '__all__'

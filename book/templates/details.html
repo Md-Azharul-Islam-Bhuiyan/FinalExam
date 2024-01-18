@@ -5,20 +5,25 @@
 <div class="col-12 d-flex p-3">
   <!-- <div class="m-2"> -->
      <div class="col-6 p-3">
-       <img src="{{bookmodel.image.url}}" alt="" style="width: 80%; height:430px">
+       <img src="{{postmodel.image.url}}" alt="" style="width: 80%; height:430px">
      </div>
     <div class="col-6 p-4">
-      <h5 class="card-title"><b>Book Name :</b> {{bookmodel.book_name}}</h5>
-      <h6 class="card-title pt-1"><b>Quantity :</b> {{bookmodel.quantity}}</h6>
+      <h5 class="card-title"><b>{{postmodel.post_name}}</b> </h5>
       <p class="card-text">
-        <b>Description : </b>{{bookmodel.description}}
+       {{postmodel.description}}
       </p>
       <p>
         <b>Category :</b>
-        
-           <button class="btn btn-primary btn-sm m-2" disabled>{{bookmodel.category.name}}</button>
+        {% for cat in postmodel.category.all %}
+           <button class="btn btn-primary btn-sm m-2" disabled>{{cat.name}}</button>
+        {% endfor %}
       </p>
-      <a href="" class="btn btn-primary"></a>
+      
+      <div class="d-flex gap-2">
+        <div><a class="btn btn-primary" href="{% url 'like' postmodel.id %}">Like👍</a></div>
+        <div style="border: 3px solid gray; width: 120px;"><p class="text-start">Total Vote: {{ postmodel.like|add:postmodel.dislike }}</p></div>
+        <div><a class="btn btn-dark" href="{% url 'dislike' postmodel.id %}">Dislike👎</a></div>
+      </div>
       
     </div>
   <!-- </div> -->

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div class="d-flex justify-content-center">
 {% load crispy_forms_tags %}
-<form method="post">
+<form method="post" class="bg-primary-subtle p-4 rounded" style="width:50%; height: 105vh; margin: auto;">
     <h1>Edit Comment</h1>
     {% csrf_token %}
     {{form | crispy}}
 
     <button class="btn btn-warning">Submit</button>
 </form>
+</div>
 {% endblock %}

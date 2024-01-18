@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
-{% block head_title %}Boilagbe{% endblock %} {% block content %}
+{% block head_title %}BoiBook{% endblock %} {% block content %}
 {% load static %}
 
 
-<div class="banner-container">
+<div class="container banner-container">
     <div class="banner rounded">
       <div class="banner-left">
-        <h2>
-          Welcome to BoiLagbe
+        <h2 text-start>
+          Welcome to BoiBook
         </h2>
-        <p class="w-50 m-auto">
-           literary worlds come to life! Immerse yourself in a curated collection of captivating stories that span genres and ignite the imagination. Whether you're a fervent fiction enthusiast, a seeker of profound non-fiction, or a parent nurturing a love for reading in your child, our shelves are stocked with literary gems tailored to diverse tastes.
+        <h4>Here You can Learn about different kinds of Post</h4>
+        <p class="w-50 m-auto text-start">
+           literary worlds come to life! Immerse yourself in a curated collection of captivating stories that span genres and ignite the imagination.
         </p>
       </div>
       <div class="banner-img">
@@ -20,22 +21,24 @@
     </div>
   </div>
 
-  <main>
-    <div class="products-container">
+  <main class="container-fluid">
+    <div class="products-container h-auto">
        <div class="row">
-           <div class="category-container text-center col-md-2 p-4">
+           <div class="category-container text-center col-md-2 p-4 h-auto">
+            <h5>All Categories</h5>
             {% for category in  categories %}
               <a class="btn btn-success my-1"  href="{% url 'category_wise_car' category.slug %}">{{category.name}}</a>
             {% endfor %}
            </div>
-           <div class="all-products col-md-10">
+           <div class="all-products col-md-10 pb-2">
              <div class="d-flex flex-wrap gap-2">
                 {% for p in data %}
-                  <div class="card text-center" style="width: 18rem;">
+                  <div class="card text-center" style="width: 14rem;">
                       <img style="height:200px;" src="{{p.image.url}}" class="card-img-top" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">{{p.book_name}}</h5>
+                        <h5 class="card-title">{{p.post_name}}</h5>
                         <p class="card-text">{{p.description | truncatewords:15}}</p>
+                        
                         <a href="{% url 'detail_book' p.id %}" class="btn btn-primary">Details</a>
                       </div>
                   </div>
@@ -46,12 +49,8 @@
     </div>
  </main>
   
-  <div class="contactUs-Container d-flex justify-content-center">
+  {% comment %} <div class="contactUs-Container d-flex justify-content-center">
     <div></div>
-    <form method="post" class="contact-form">
-       {% csrf_token %}
-       {{form}}
-      <button type="submit" class="btn btn-primary mx-3">Submit</button>
-    </form>
-  </div>
+    {% include "contact_us/contact_us.html" %}
+  </div> {% endcomment %}
 {% endblock %}
